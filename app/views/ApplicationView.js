@@ -1,4 +1,4 @@
-module.exports = App.ApplicationView = new (App.View.extend({
+module.exports = App.ApplicationView = App.View.extend({
   model: App.ApplicationModel,
 
   el: '#app-root',
@@ -8,4 +8,4 @@ module.exports = App.ApplicationView = new (App.View.extend({
   initialize: function() {
 
   }
-}));
+});

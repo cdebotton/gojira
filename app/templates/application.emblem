@@ -1,1 +1,3 @@
-p application template
+h2 Test
+
+view 'App.NavigationView'

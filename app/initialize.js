@@ -2,10 +2,11 @@
 
 var App = require('config/app');
 require('config/view');
+require('config/utils');
 
 var folderOrder = [
   'routers', 'models', 'collections', 'controllers',
-  'views', 'helpers', 'templates'
+  'templates', 'views', 'helpers'
   ];
 
 folderOrder.forEach(function(folder) {
@@ -16,5 +17,7 @@ folderOrder.forEach(function(folder) {
   });
 });
 
-App.ApplicationView.render();
+var app = new App.ApplicationView;
+app.render();
+
 Backbone.history.start({ pushState: true });

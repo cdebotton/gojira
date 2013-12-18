@@ -1,5 +1,7 @@
 module.exports = App.Router = new (Backbone.Router.extend({
   routes: {
-    '': 'home'
+    '': 'index',
+    'about': 'about',
+    'users/:user_id/profile/:profile_id': 'user.profile'
   }
 }));

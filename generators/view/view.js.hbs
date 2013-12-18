@@ -1,7 +1,9 @@
 'use strict';
 
-module.exports = App.{{#camelize}}{{name}}{{/camelize}}View = new (Backbone.View.extend({
+module.exports = App.{{#camelize}}{{name}}{{/camelize}}View = App.View.extend({
   model: App.{{#camelize}}{{name}}{{/camelize}}Model,
+
+  template: require('templates/{{name}}'),
 
   className: '{{name}}',
 
@@ -12,4 +14,4 @@ module.exports = App.{{#camelize}}{{name}}{{/camelize}}View = new (Backbone.View
   initialize: function() {
     _.bindAll(this);
   }
-}));
+});

@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = App.{{#camelize}}{{name}}{{/camelize}}Model = new (Backbone.RelationalModel.extend({
+module.exports = App.{{#camelize}}{{name}}{{/camelize}}Model = Backbone.RelationalModel.extend({
   relations: [
     type            : 'Backbone.HasMany',
     relatedModel    : 'App.SomeModel',
@@ -18,4 +18,4 @@ module.exports = App.{{#camelize}}{{name}}{{/camelize}}Model = new (Backbone.Rel
   initialize: function() {
     _.bindAll(this);
   }
-}));
+});

@@ -21,7 +21,7 @@ var ViewHelper = {
       view.template = options.fn;
     }
 
-    cid = (parentView || options.data.view).cid;
+    var cid = (parentView || options.data.view).cid;
     this.postponed[cid] = this.postponed[cid] || [];
     this.postponed[cid].push(view);
 
@@ -30,7 +30,6 @@ var ViewHelper = {
 
   renderPostponed: function(parentView) {
     var cid = parentView.cid;
-
     this.rendered[cid] = _.map(this.postponed[parentView.cid], function(view) {
       view.render();
       parentView.$('#_' + view.cid).replaceWith(view.el);
@@ -94,12 +93,12 @@ App.View.prototype.renderedSubViews = function() {
 
 var _remove = Backbone.View.prototype.remove;
 
-Backbone.View.prototype.remove = function() {
+App.View.prototype.remove = function() {
   ViewHelper.clearRendered(this);
   _remove.apply(this, arguments);
 };
 
-Backbone.View.prototype.render = function() {
+App.View.prototype.render = function() {
   if (this.template) {
     var data = typeof this.templateData === 'function' ? this.templateData() : this.templateData;
     this.renderTemplate(data);
@@ -107,6 +106,6 @@ Backbone.View.prototype.render = function() {
   return this;
 };
 
-Backbone.View.prototype.templateData = function() {
+App.View.prototype.templateData = function() {
   return {};
 };
