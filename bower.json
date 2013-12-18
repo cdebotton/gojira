@@ -1,0 +1,60 @@
+{
+  "name": "What's in the box",
+  "version": "0.0.1",
+  "main": "public/app.js",
+  "authors": [
+    "Christian de Botton <cdebotton@gmail.com>"
+  ],
+  "description": "A brunch scaffold for complex Backbone apps.",
+  "keywords": [
+    "brunch",
+    "backbone",
+    "stylus",
+    "relational",
+    "scaffolt",
+    "emblem"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.christiandebotton.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.0",
+    "lodash": "~2.4.1",
+    "jquery": "~2.0.3",
+    "backbone-relational": "~0.8.6",
+    "handlebars.js": "~1.1.2",
+    "font-awesome": "~4.0.3",
+    "swag": "~0.5.0"
+  },
+  "devDependencies": {
+    "emblem.js": "*"
+  },
+  "overrides": {
+    "backbone": {
+      "main": "backbone.js",
+      "dependencies": {
+        "jquery": "*",
+        "lodash": "*"
+      }
+    },
+    "backbone-relational": {
+      "main": "backbone-relational.js",
+      "dependencies": {
+        "backbone": "*"
+      }
+    },
+    "font-awesome": {
+      "main": "css/font-awesome.css"
+    },
+    "handlebars.js": {
+      "main": "handlebars.js"
+    }
+  }
+}
