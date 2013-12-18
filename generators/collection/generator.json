@@ -1,0 +1,10 @@
+{
+  "name": "collection",
+  "files": [
+    {
+      "from": "collection.js.hbs",
+      "to": "app/collections/{{#camelize}}{{name}}{{/camelize}}Collection.js"
+    }
+  ],
+  "dependencies": []
+}

@@ -1,0 +1,11 @@
+'use strict';
+
+module.exports = App.{{#camelize}}{{name}}{{/camelize}}Model = new (Backbone.Model.extend({
+  defaults: {
+
+  },
+
+  initialize: function() {
+    _.bindAll(this);
+  }
+}));

@@ -1,0 +1,10 @@
+{
+  "name": "relational-model",
+  "files": [
+    {
+      "from": "relational-model.js.hbs",
+      "to": "app/models/{{#camelize}}{{name}}{{/camelize}}Model.js"
+    }
+  ],
+  "dependencies": []
+}

@@ -1,0 +1,11 @@
+'use strict';
+
+module.exports = App.{{#camelize}}{{name}}{{/camelize}}Router = new (Backbone.Router.extend({
+  routes: {
+    '': 'root'
+  },
+
+  initialize: function() {
+    _.bindAll(this);
+  }
+}));
