@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = App.{{#camelize}}{{name}}{{/camelize}}View = new (Backbone.View.extend({
+  model: App.{{#camelize}}{{name}}{{/camelize}}Model,
+
   className: '{{name}}',
 
   events: {

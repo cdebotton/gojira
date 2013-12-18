@@ -1,1 +1,3 @@
-module.exports = App = {};
+'use strict';
+
+module.exports = window.App = {};

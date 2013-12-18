@@ -26,25 +26,31 @@
   ],
   "dependencies": {
     "backbone": "~1.1.0",
-    "lodash": "~2.4.1",
     "jquery": "~2.0.3",
     "backbone-relational": "~0.8.6",
     "handlebars.js": "~1.1.2",
     "font-awesome": "~4.0.3",
     "swag": "~0.5.0",
     "modernizr": "~2.7.1",
-    "normalize-css": "~2.1.3"
+    "normalize-css": "~2.1.3",
+    "underscore": "~1.5.2"
   },
   "devDependencies": {
     "emblem.js": "*"
   },
   "overrides": {
+    "underscore": {
+      "main": "underscore.js"
+    },
     "backbone": {
       "main": "backbone.js",
       "dependencies": {
         "jquery": "*",
-        "lodash": "*"
+        "underscore": "*"
       }
+    },
+    "handlebars.js": {
+      "main": "handlebars.js"
     },
     "backbone-relational": {
       "main": "backbone-relational.js",
@@ -54,9 +60,6 @@
     },
     "font-awesome": {
       "main": "css/font-awesome.css"
-    },
-    "handlebars.js": {
-      "main": "handlebars.js"
     },
     "modernizr": {
       "main": "modernizr.js"

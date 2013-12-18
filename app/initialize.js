@@ -1,10 +1,11 @@
 'use strict';
 
-var App = window.App = require('config/app');
+var App = require('config/app');
+require('config/view');
 
 var folderOrder = [
-  'models', 'collections', 'controllers',
-  'views', 'helpers', 'templates', 'routers'
+  'routers', 'models', 'collections', 'controllers',
+  'views', 'helpers', 'templates'
   ];
 
 folderOrder.forEach(function(folder) {
@@ -15,4 +16,5 @@ folderOrder.forEach(function(folder) {
   });
 });
 
+App.ApplicationView.render();
 Backbone.history.start({ pushState: true });
