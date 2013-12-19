@@ -112,3 +112,5 @@ App.View.prototype.templateData = function() {
 };
 
 App.View.prototype.didInsertElement = function() {};
+
+App.View.prototype.didInsertChildElements = function() {};
