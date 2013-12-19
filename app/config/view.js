@@ -65,12 +65,11 @@ Handlebars.registerHelper('views', function(name, models, options) {
   var _parentView = this._parentView;
   var callback = function(model) {
     options.hash.model = model;
-    ViewHelper.postponeRender(name, options, _parentView);
+    return ViewHelper.postponeRender(name, options, _parentView);
   };
   models = this._parentView.model.get(models).models;
   var markers = _.map(models, callback);
-
-  return Handlebars.SafeString(markers.join(''));
+  return new Handlebars.SafeString(markers.join(''));
 });
 
 var _compile = Handlebars.compile;
