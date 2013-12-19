@@ -1,3 +1,3 @@
-module.exports = App.ApplicationModel = new (Backbone.Model.extend({
+module.exports = App.ApplicationModel = new (Backbone.RelationalModel.extend({
 
 }));

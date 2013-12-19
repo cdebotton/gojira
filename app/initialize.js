@@ -17,7 +17,9 @@ folderOrder.forEach(function(folder) {
   });
 });
 
-var app = new App.ApplicationView;
+var app = new App.ApplicationView({
+  model: new App.ApplicationModel
+});
 app.render();
 
 Backbone.history.start({ pushState: true });
