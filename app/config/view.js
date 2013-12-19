@@ -15,11 +15,10 @@ var ViewHelper = {
     if (! viewClass) {
       throw('Invalid view name - ' + name + '.');
     }
-
     if (! options.hash.model) {
       options.hash.model = parentView.model;
     }
-    else {
+    else if(typeof options.hash.model === 'string') {
       options.hash.model = parentView.model.get(options.hash.model);
     }
 
@@ -63,10 +62,12 @@ Handlebars.registerHelper('view', function(name, options) {
 });
 
 Handlebars.registerHelper('views', function(name, models, options) {
+  var _parentView = this._parentView;
   var callback = function(model) {
     options.hash.model = model;
-    ViewHelper.postponeRender(name, options, this._parentView);
+    ViewHelper.postponeRender(name, options, _parentView);
   };
+  models = this._parentView.model.get(models).models;
   var markers = _.map(models, callback);
 
   return Handlebars.SafeString(markers.join(''));
