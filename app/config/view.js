@@ -33,6 +33,7 @@ var ViewHelper = {
     this.rendered[cid] = _.map(this.postponed[parentView.cid], function(view) {
       view.render();
       parentView.$('#_' + view.cid).replaceWith(view.el);
+      view.didInsertElement();
       return view;
     });
 
@@ -109,3 +110,5 @@ App.View.prototype.render = function() {
 App.View.prototype.templateData = function() {
   return {};
 };
+
+App.View.prototype.didInsertElement = function() {};
