@@ -36,7 +36,7 @@ var ViewHelper = {
       view.didInsertElement();
       return view;
     });
-
+    parentView.didInsertChildElements();
     delete this.postponed[cid];
   },
 
