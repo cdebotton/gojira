@@ -16,6 +16,13 @@ var ViewHelper = {
       throw('Invalid view name - ' + name + '.');
     }
 
+    if (! options.hash.model) {
+      options.hash.model = parentView.model;
+    }
+    else {
+      options.hash.model = parentView.model.get(options.hash.model);
+    }
+
     var view = new viewClass(options.hash);
     if (options.fn) {
       view.template = options.fn;
@@ -108,7 +115,11 @@ App.View.prototype.render = function() {
 };
 
 App.View.prototype.templateData = function() {
-  return {};
+  var ctx = this.model ? this.model.toJSON() : {};
+  if (this.model) {
+    ctx._cid = this.model.cid;
+  }
+  return ctx;
 };
 
 App.View.prototype.didInsertElement = function() {};
