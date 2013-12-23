@@ -1,4 +1,4 @@
-util = reqiure 'util'
+util = require 'util'
 exec = (require 'child_process').exec
 server = (require 'karma').server
 
