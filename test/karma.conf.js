@@ -4,6 +4,7 @@ module.exports = function(config) {
     files: [
       'public/javascripts/vendor.js',
       'public/javascripts/app.js',
+      'bower_components/handlebars/handlebars.js',
       'bower_components/chai/chai.js',
       'bower_components/sinonjs/sinon.js',
       'bower_components/chai-jquery/chai-jquery.js',
@@ -18,7 +19,7 @@ module.exports = function(config) {
     runnerPort: 9100,
     colors: true,
     logLevel: config.LOG_INFO,
-    reporters: ['progress'],
+    reporters: ['dots'],
 
     // Available browsers
     // Chrome
@@ -41,7 +42,6 @@ module.exports = function(config) {
 
     plugins: [
       'karma-mocha',
-      'karma-commonjs-preprocessor',
       'karma-phantomjs-launcher',
       'karma-chrome-launcher',
       'karma-firefox-launcher',

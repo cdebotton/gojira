@@ -1,8 +1,6 @@
-module.exports = App.Router = new (Backbone.Router.extend({
+module.exports = App.ApplicationRouter = Backbone.Router.extend({
   routes: {
-    '': 'index',
-    'about': 'about',
-    'users/:user_id/profile/:profile_id': 'user.profile'
+    '': 'index'
   },
 
   constructor: function(options) {
@@ -11,4 +9,4 @@ module.exports = App.Router = new (Backbone.Router.extend({
       this[this.routes[i]] = function() {};
     }
   }
-}));
+});

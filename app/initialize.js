@@ -18,11 +18,12 @@ folderOrder.forEach(function(folder) {
   });
 });
 
+App.Router = new App.ApplicationRouter;
+
 var app = new App.ApplicationView({
   model: new App.ApplicationModel
 });
 app.render();
 
 Backbone.history.start({ pushState: true });
-
 module.exports = app;
