@@ -43,7 +43,8 @@
     "chai-changes": "*",
     "chai-backbone": "*",
     "sinon-chai": "~2.4.0",
-    "sinonjs": "~1.7.3"
+    "sinonjs": "~1.7.3",
+    "commonjs-require-definition": "~0.1.2"
   },
   "overrides": {
     "underscore": {

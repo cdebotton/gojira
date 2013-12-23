@@ -1,11 +1,9 @@
-Index = require('views/ApplicationView');
-
 describe('index', function() {
   before(function() {
-    body = document.createElement('body');
-    body.className = 'application';
-    this.index = new Index;
-    this.index.setElement('body');
+    var root = document.createElement('div');
+    root.id = 'app-root';
+    this.index = new App.ApplicationView;
+    this.index.setElement(root);
   });
 
   it('should exist', function() {
@@ -14,7 +12,7 @@ describe('index', function() {
 
   it('should have the `body` element assigned to the `el` property', function() {
     expect(this.index.$el).to.exist;
-    expect(this.index.$el.is('body')).to.be.true;
-    expect(this.index.$el).to.have.class('application');
+    expect(this.index.$el.is('div')).to.be(true);
+    expect(this.index.$el).to.have.id('app-root');
   });
 });

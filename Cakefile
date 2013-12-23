@@ -3,7 +3,7 @@ exec = (require 'child_process').exec
 server = (require 'karma').server
 
 task 'test', ->
-  config = "#{__dirname}/test/karma.conf.coffee"
+  config = "#{__dirname}/test/karma.conf.js"
   server.start configFile: config, (exitCode) ->
     console.log "Karma has exited with #{exitCode}."
     process.exit exitCode

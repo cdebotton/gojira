@@ -1,6 +1,6 @@
 describe('ApplicationRouter', function() {
   before(function() {
-    this.main = require('routers/ApplicationRouter');
+    this.main = App.Router;
   });
 
   it('should exist', function() {

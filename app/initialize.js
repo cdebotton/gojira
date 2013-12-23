@@ -24,3 +24,5 @@ var app = new App.ApplicationView({
 app.render();
 
 Backbone.history.start({ pushState: true });
+
+module.exports = app;
