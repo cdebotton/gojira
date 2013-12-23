@@ -13,6 +13,7 @@ module.exports = (config) ->
       'bower_components/chai-backbone/chai-backbone.js'
       'bower_components/sinon-chai/lib/sinon-chai.js'
 
+      'test/helpers.coffee'
       'test/**/*_test.(coffee|js)'
     ]
 
