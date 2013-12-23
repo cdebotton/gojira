@@ -14,7 +14,7 @@ module.exports = (config) ->
       'bower_components/sinon-chai/lib/sinon-chai.js'
 
       'test/helpers.coffee'
-      'test/**/*_test.(coffee|js)'
+      'test/**/*Test.(coffee|js)'
     ]
 
     port: '8080'
