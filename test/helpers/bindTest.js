@@ -66,4 +66,12 @@ describe('bind helper', function() {
     this.view.render();
     expect(this.view.$('button').hasClass('always-foo')).to.be.true;
   });
+
+  it('should remove attribute if the property\'s returned value is falsey', function() {
+    this.view.template = Handlebars.compile('<i {{bind \'class\' \'isFoo:foo:\'}}></i>');
+    this.view.render();
+    expect(this.view.$('i').hasClass('foo')).to.be.true;
+    this.view.model.set('foo', false);
+    expect(this.view.$('i').attr('class')).to.be.false;
+  });
 });
