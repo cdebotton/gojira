@@ -41,4 +41,12 @@ describe('bind helper', function() {
     this.view.model.set('foo', 'bar2');
     expect(this.view.$('a').attr('href')).to.equal('/bar2');
   });
+
+  it('should update the model when the user enters input', function() {
+    this.view.template = Handlebars.compile('<input type="text" {{bind \'value\' \'foo\' }}>');
+    this.view.render();
+    this.view.$('input').val('test');
+    this.view.$('input').trigger('keyup');
+    expect(this.view.model.get('foo')).to.equal('test');
+  });
 });

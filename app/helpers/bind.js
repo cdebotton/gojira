@@ -30,5 +30,13 @@ module.exports = Handlebars.registerHelper('bind', function(attr, property, opti
     this._parentView.$('['+dataTag+']').attr(attr, getValue(attr, value));
   }, this));
 
+  var updateModel = function(e) {
+    value = e.target.value;
+    model.set(property, value);
+  };
+
+  this._parentView.$el.on('change [' + dataTag + ']', updateModel);
+  this._parentView.$el.on('keyup [' + dataTag + ']', updateModel);
+
   return new Handlebars.SafeString(str);
 });
