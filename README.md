@@ -34,6 +34,13 @@ Using scaffolt, you can rapidly create new components.
 ## Dependency Management
 Bower files will be automatically included properly. The `app/initialize.js` file correctly manage the order in which files are ordered. String notation should be used in Backbone.Model relations so that the objects aren't required until initialization.
 
+## Helpers
+### link-to
+`link-to 'route' 'context' | My Route` will look in the router and match any query params against the given model, generating the proper HTML for a link.
+
+### bind
+`bind 'attribute' 'model.property'` will provide two way binding between any dom attribute and a model property. User input will automatically update the model, and updates to the model will automatically update the DOM.
+
 ## Testing
 Tests are run using the karma spec runner. The mocha+chai frameworks are used along with Sinon.js for server mocking.
 
