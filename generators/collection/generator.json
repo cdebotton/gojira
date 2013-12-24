@@ -3,8 +3,10 @@
   "files": [
     {
       "from": "collection.js.hbs",
-      "to": "app/collections/{{#camelize}}{{name}}{{/camelize}}Collection.js"
+      "to": "app/collections/{{#camelize}}{{pluralName}}{{/camelize}}Collection.js"
     }
   ],
-  "dependencies": []
+  "dependencies": [{
+      "type": "model"
+    }]
 }

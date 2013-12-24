@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = App.{{#camelize}}{{name}}{{/camelize}}Collection = Backbone.Collection.extend({
+module.exports = App.{{#camelize}}{{pluralName}}{{/camelize}}Collection = Backbone.Collection.extend({
   model: App.{{#camelize}}{{name}}{{/camelize}}Model,
 
   initialize: function() {
