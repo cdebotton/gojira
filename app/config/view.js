@@ -129,6 +129,9 @@ App.View.prototype.templateData = function() {
   if (this.model) {
     ctx._cid = this.model.cid;
   }
+  if (this.controller) {
+    _.extend(ctx, { controller: this.controller.toJSON() });
+  }
   return ctx;
 };
 

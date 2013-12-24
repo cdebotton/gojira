@@ -54,6 +54,10 @@ _.extend(App.Controller.prototype, Backbone.Events, {
     return false;
   },
 
+  toJSON: function() {
+    return Backbone.Model.prototype.toJSON.call(this);
+  },
+
   unset: function(attr, options) {
     return Backbone.Model.prototype.unset.call(this, attr, options);
   }
