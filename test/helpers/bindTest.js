@@ -61,9 +61,9 @@ describe('bind helper', function() {
     expect(this.view.$('button').attr('class')).to.equal('baz');
   });
 
-  xit('should accept constant arguments.', function() {
+  it('should accept constant arguments.', function() {
     this.view.template = Handlebars.compile('<button type="button" {{bind \'class\' \'isFoo::!always-foo\' }}>foo</button>');
     this.view.render();
-    expect(this.view.$('button').hasClass('foo'));
+    expect(this.view.$('button').hasClass('always-foo')).to.be.true;
   });
 });

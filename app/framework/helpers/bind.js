@@ -3,11 +3,17 @@
 var conditionalReg = /^is([A-Z][^:]+):/;
 
 var getOutput = function(attr, property, model) {
-  var value, conditions;;
+  var value, conditions;
   if (!conditionalReg.test(property)) {
     value = model.get(property);
   }
   else {
+    var constants = [''];
+    if (/!/.test(property)) {
+      property = property.split('!');
+      constants.push(property.pop());
+      property = property.shift();
+    }
     conditions = property.split(':');
     property = property.match(conditionalReg)[1].toLowerCase();
     if (model.has(property) && !! model.get(property)) {
@@ -16,7 +22,9 @@ var getOutput = function(attr, property, model) {
     else {
       value = conditions[2];
     }
+    value += constants.join(' ');
   }
+
   switch(attr) {
     case 'href':
       var hash = Backbone.history._hasPushState ||
