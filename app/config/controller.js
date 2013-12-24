@@ -32,14 +32,11 @@ _.extend(App.Controller.prototype, Backbone.Events, {
   initialize: function () {},
 
   set: function(key, value, options) {
-    if (typeof key === 'object') {
-      options = value;
-      for (var i in key) {
-        var value = key[i];
-        App.Controller.prototype.set.call(this, i, value, options);
-      }
-    }
-    this.attributes[key] = value;
+    return Backbone.Model.prototype.set.call(this, key, value, options);
+  },
+
+  _validate: function(attrs, options) {
+    return Backbone.Model.prototype._validate.call(this, attrs, options);
   },
 
   get: function(property, fallback) {
@@ -57,9 +54,7 @@ _.extend(App.Controller.prototype, Backbone.Events, {
     return false;
   },
 
-  unset: function(property) {
-    if (this.has(property)) {
-      delete this.attributes[property];
-    }
+  unset: function(attr, options) {
+    return Backbone.Model.prototype.unset.call(this, attr, options);
   }
 });
