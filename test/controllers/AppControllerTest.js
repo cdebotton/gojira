@@ -4,8 +4,7 @@ describe('Controllers', function() {
   beforeEach(function() {
     this.controller = new App.Controller;
     this.server = sinon.fakeServer.create();
-    this.server.respondWith('POST', '/fake', [200, { "Content-Type": "application/json" },'{"foo":"bar"}']);
-    this.eventSpy = sinon.spy();
+    this.server.respondWith('POST', '/', [200, { "Content-Type": "application/json" },'{"foo":"bar"}']);
   });
 
   afterEach(function() {
@@ -68,13 +67,17 @@ describe('Controllers', function() {
     expect(view.controller.get('dirty')).to.be.true;
   });
 
-  it('should not be dirty when the model is synced', function() {
+  it('should not be dirty when the model is synced', function(done) {
     var view = new App.View({ model: new App.Model });
-    view.model.url = '/fake';
-    view.model.on('sync', this.eventSpy);
+    view.model.url = '/';
     view.model.set('foo', 'bar');
     expect(view.controller.get('dirty')).to.be.true;
-    view.model.save();
-    expect(view.controller.get('dirty')).to.be.false;
+    view.model.save(null, { success: function(model, attrs, options) {
+      setTimeout(function() {
+        expect(view.controller.get('dirty')).to.be.false;
+        done();
+      }, 1);
+    }});
+    this.server.requests[0].respond(200, {"Content-Type": "application/json"}, '{"foo":"bar"}');
   });
 });

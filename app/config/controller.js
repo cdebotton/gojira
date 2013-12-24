@@ -16,9 +16,9 @@ App.Controller = function(attributes) {
     this.view.model.on('change', _.bind(function() {
       this.set('dirty', true);
     }, this));
+
     this.view.model.on('sync', _.bind(function() {
       this.set('dirty', false);
-      console.log('!');
     }, this));
   }
   this.initialize.apply(this, arguments);
