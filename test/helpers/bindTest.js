@@ -5,7 +5,8 @@ describe('bind helper', function() {
     delete App.Router;
     App.Router = new (App.ApplicationRouter.extend({
       routes: {
-        'foo': 'bar'
+        'foo': 'bar',
+        'foo2': 'bar2'
       }
     }));
   });
@@ -27,9 +28,17 @@ describe('bind helper', function() {
     expect(this.view.render.bind(this.view)).to.throw('Cannot bind property doesntExist.');
   });
 
-  xit('should appropriately create links when href is provided', function() {
+  it('should appropriately create links when href is provided', function() {
     this.view.template = Handlebars.compile("<a {{bind 'href' 'foo'}}>Link to foo</a>");
     this.view.render();
     expect(this.view.$('a').attr('href')).to.equal('/bar');
+  });
+
+  it('should update the attribute when model is updated.', function() {
+    this.view.template = Handlebars.compile("<a {{bind 'href' 'foo'}}>Link to foo</a>");
+    this.view.render();
+    expect(this.view.$('a').attr('href')).to.equal('/bar');
+    this.view.model.set('foo', 'bar2');
+    expect(this.view.$('a').attr('href')).to.equal('/bar2');
   });
 });
