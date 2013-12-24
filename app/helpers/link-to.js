@@ -3,6 +3,9 @@
 module.exports = Handlebars.registerHelper('link-to', function(target, options) {
   var values = _.values(App.Router.routes),
       keys = _.keys(App.Router.routes),
+      hash = Backbone.history._hasPushState ||
+             !Backbone.history._wantsHashChange ?
+             '' : '#/',
       index, model;
 
   if (options.hash && options.hash.model) {
@@ -38,7 +41,7 @@ module.exports = Handlebars.registerHelper('link-to', function(target, options) 
     }, this), []);
 
 
-    return '<a href="/'+ route +'">' + options.fn() + '</a>';
+    return '<a href="/' + hash + route +'">' + options.fn() + '</a>';
   }
 
   throw new Error('route: ' + target + ' does not exist.');
