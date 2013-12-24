@@ -4,6 +4,6 @@ module.exports = App.ApplicationView = App.View.extend({
   template: require('templates/application'),
 
   initialize: function() {
-
+    Backbone.Validation.bind(this);
   }
 });

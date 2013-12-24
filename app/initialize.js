@@ -1,6 +1,7 @@
 'use strict';
 
 var App = require('config/app');
+require('config/controller');
 require('config/model');
 require('config/view');
 require('config/utils');

@@ -2,7 +2,9 @@ describe('index', function() {
   before(function() {
     var root = document.createElement('div');
     root.id = 'app-root';
-    this.index = new App.ApplicationView;
+    this.index = new App.ApplicationView({
+      model: new App.ApplicationModel
+    });
     this.index.setElement(root);
   });
 
