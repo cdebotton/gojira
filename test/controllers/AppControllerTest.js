@@ -3,6 +3,13 @@
 describe('Controllers', function() {
   beforeEach(function() {
     this.controller = new App.Controller;
+    this.server = sinon.fakeServer.create();
+    this.server.respondWith('POST', '/fake', [200, { "Content-Type": "application/json" },'{"foo":"bar"}']);
+    this.eventSpy = sinon.spy();
+  });
+
+  afterEach(function() {
+    this.server.restore();
   });
 
   it('should exist', function() {
@@ -48,5 +55,26 @@ describe('Controllers', function() {
     expect(this.controller.get('foo')).to.equal('bar');
     this.controller.unset('foo');
     expect(this.controller.get('foo')).to.be.undefined;
+  });
+
+  it('should instantiate with a false dirty property', function() {
+    expect(this.controller.get('dirty')).to.be.false;
+  });
+
+  it('should be dirty when model is changed', function() {
+    var view = new App.View({ model: new App.Model });
+    expect(view.controller.get('dirty')).to.be.false;
+    view.model.set('foo', 'bar');
+    expect(view.controller.get('dirty')).to.be.true;
+  });
+
+  it('should not be dirty when the model is synced', function() {
+    var view = new App.View({ model: new App.Model });
+    view.model.url = '/fake';
+    view.model.on('sync', this.eventSpy);
+    view.model.set('foo', 'bar');
+    expect(view.controller.get('dirty')).to.be.true;
+    view.model.save();
+    expect(view.controller.get('dirty')).to.be.false;
   });
 });

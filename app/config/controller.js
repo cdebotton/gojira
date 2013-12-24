@@ -10,7 +10,17 @@ App.Controller = function(attributes) {
   this.cid = _.unique('c');
   this.attributes = {};
   attrs = _.defaults({}, attrs, _.result(this, 'defaults'));
+  attrs.dirty = false;
   this.set(attrs);
+  if (this.view && this.view.model) {
+    this.view.model.on('change', _.bind(function() {
+      this.set('dirty', true);
+    }, this));
+    this.view.model.on('sync', _.bind(function() {
+      this.set('dirty', false);
+      console.log('!');
+    }, this));
+  }
   this.initialize.apply(this, arguments);
 };
 

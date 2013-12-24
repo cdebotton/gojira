@@ -82,6 +82,16 @@ Handlebars.compile = function(template, options) {
 module.exports = App.View = Backbone.View.extend({
   constructor: function(options) {
     Backbone.View.call(this, options);
+    if (options && options.controller) {
+      this.controller = options.controller;
+      this.controller.view = this;
+      delete options.controller;
+    }
+    else {
+      this.controller = new App.Controller({
+        view: this
+      });
+    }
   }
 });
 
