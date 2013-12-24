@@ -1,14 +1,14 @@
 'use strict';
 
-var App = require('config/app');
-require('config/controller');
-require('config/model');
-require('config/view');
-require('config/utils');
+var App = require('framework/config/app');
+require('framework/config/controller');
+require('framework/config/model');
+require('framework/config/view');
+require('framework/config/utils');
 
 var folderOrder = [
   'routers', 'models', 'collections', 'controllers',
-  'templates', 'views', 'helpers'
+  'templates', 'views','framework/helpers', 'helpers'
   ];
 
 folderOrder.forEach(function(folder) {
