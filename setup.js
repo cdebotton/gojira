@@ -28,8 +28,8 @@ switch(mode) {
         execute('cp', '-fpRv whats-in-the-box-master/setup.js ./setup.js');
         execute('cp', '-fpRv whats-in-the-box-master/generators ./', function() {
           execute('rm', '-rf whats-in-the-box-master');
-          execute('npm install', function() {
-            execute('bower install');
+          execute('npm', 'install', function() {
+            execute('bower', 'install');
           });
         });
       });

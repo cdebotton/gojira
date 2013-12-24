@@ -10,7 +10,7 @@
   "scripts": {
     "start": "brunch watch --server",
     "test": "cake test",
-    "update": "node setup.js update"
+    "update:framework": "node setup.js update"
   },
   "dependencies": {
     "javascript-brunch": ">= 1.0 < 1.8",
