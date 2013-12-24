@@ -20,7 +20,7 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     reporters: ['spec'],
-
+    reportSlowerThan: 200,
     // Available browsers
     // Chrome
     // ChromeCanary
