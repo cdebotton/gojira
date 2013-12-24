@@ -49,4 +49,15 @@ describe('bind helper', function() {
     this.view.$('input').trigger('keyup');
     expect(this.view.model.get('foo')).to.equal('test');
   });
+
+  it('should be able to bind a two sided toggle', function() {
+    this.view.template = Handlebars.compile('<button type="button" {{bind \'class\' \'foo:bar:baz\'}}>Link</button>');
+    this.view.model.unset('foo');
+    this.view.render();
+    expect(this.view.$('button').attr('class')).to.equal('baz');
+    this.view.model.set('foo', true);
+    expect(this.view.$('button').attr('class')).to.equal('bar');
+    this.view.model.set('foo', false);
+    expect(this.view.$('button').attr('class')).to.equal('baz');
+  });
 });
