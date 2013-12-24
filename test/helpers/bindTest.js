@@ -51,7 +51,7 @@ describe('bind helper', function() {
   });
 
   it('should be able to bind a two sided toggle', function() {
-    this.view.template = Handlebars.compile('<button type="button" {{bind \'class\' \'foo:bar:baz\'}}>Link</button>');
+    this.view.template = Handlebars.compile('<button type="button" {{bind \'class\' \'isFoo:bar:baz\'}}>Link</button>');
     this.view.model.unset('foo');
     this.view.render();
     expect(this.view.$('button').attr('class')).to.equal('baz');
@@ -59,5 +59,11 @@ describe('bind helper', function() {
     expect(this.view.$('button').attr('class')).to.equal('bar');
     this.view.model.set('foo', false);
     expect(this.view.$('button').attr('class')).to.equal('baz');
+  });
+
+  xit('should accept constant arguments.', function() {
+    this.view.template = Handlebars.compile('<button type="button" {{bind \'class\' \'isFoo::!always-foo\' }}>foo</button>');
+    this.view.render();
+    expect(this.view.$('button').hasClass('foo'));
   });
 });

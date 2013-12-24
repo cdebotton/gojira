@@ -1,13 +1,16 @@
 'use strict';
 
+var conditionalReg = /^is([A-Z][^:]+):/;
+
 var getOutput = function(attr, property, model) {
-  var value, conditions;
-  if (!/:/g.test(property)) {
+  var value, conditions;;
+  if (!conditionalReg.test(property)) {
     value = model.get(property);
   }
   else {
     conditions = property.split(':');
-    if (model.has(conditions[0]) && !! model.get(conditions[0])) {
+    property = property.match(conditionalReg)[1].toLowerCase();
+    if (model.has(property) && !! model.get(property)) {
       value = conditions[1];
     }
     else {
@@ -27,7 +30,7 @@ var getOutput = function(attr, property, model) {
 
 module.exports = Handlebars.registerHelper('bind', function(attr, property, options) {
   var model = this._parentView.model, value,
-      isConditional = /:/g.test(property);
+      isConditional = conditionalReg.test(property);
 
   if (!model.has(property) && !isConditional) {
     throw 'Cannot bind property ' + property + '.';
@@ -39,7 +42,7 @@ module.exports = Handlebars.registerHelper('bind', function(attr, property, opti
       dataTag = ['data-watch-' + attr, '=', '"'+wId+'"'].join(''),
       valueTag = [attr, '=', '"'+value+'"'].join(''),
       str = [valueTag, dataTag].join(' '),
-      evt = 'change:' + (isConditional ? property.split(':')[0] : property);
+      evt = 'change:' + (isConditional ? property.match(conditionalReg)[1].toLowerCase() : property);
 
   model.on(evt, _.bind(function(property, model, value) {
     this._parentView.$('['+dataTag+']').attr(attr, getOutput(attr, property, model));
