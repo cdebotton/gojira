@@ -1,17 +1,9 @@
 'use strict';
 
-module.exports = Handlebars.registerHelper('link-to', function(target, context, options) {
+module.exports = Handlebars.registerHelper('link-to', function(target, options) {
   var values = _.values(App.Router.routes),
       keys = _.keys(App.Router.routes),
-      mock, index, model;
-
-  if (options === void 0) {
-    options = context;
-    context = _.extend({
-      _parentView: this._parentView,
-      _cid: this._parentView.model.cid
-    }, this._parentView.model.toJSON());
-  }
+      index, model;
 
   if (options.hash && options.hash.model) {
     model = this._parentView.model.get(options.hash.model);
@@ -20,9 +12,6 @@ module.exports = Handlebars.registerHelper('link-to', function(target, context, 
     model = this._parentView.model;
   }
 
-  mock = _.clone(context);
-  delete mock._parentView;
-  delete mock._cid;
   if ((index = _.indexOf(values, target)) > -1) {
     var route = keys[index];
     var objectPath = _.reduce(target.split('.'), _.bind(function(memo, part, key, array) {
