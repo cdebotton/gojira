@@ -7,7 +7,7 @@ App.Controller = function(attributes) {
   }
 
   var attrs = attributes || {};
-  this.cid = _.unique('c');
+  this.cid = _.uniqueId('c');
   this.attributes = {};
   attrs = _.defaults({}, attrs, _.result(this, 'defaults'));
   attrs.dirty = false;
