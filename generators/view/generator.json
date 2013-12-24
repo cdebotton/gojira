@@ -6,5 +6,8 @@
       "to": "app/views/{{#camelize}}{{name}}{{/camelize}}View.js"
     }
   ],
-  "dependencies": []
+  "dependencies": [{
+      "type": "template",
+      "name": "{{name}}"
+    }]
 }

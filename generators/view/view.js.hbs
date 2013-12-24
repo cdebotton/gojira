@@ -12,6 +12,6 @@ module.exports = App.{{#camelize}}{{name}}{{/camelize}}View = App.View.extend({
   },
 
   initialize: function() {
-
+    Backbone.Validation.bind(this);
   }
 });
