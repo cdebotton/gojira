@@ -22,7 +22,13 @@ switch(mode) {
     execute('curl https://codeload.github.com/cdebotton/whats-in-the-box/zip/master', '> master.zip', function() {
       execute('unzip', 'master.zip', function() {
         execute('rm', 'master.zip');
-        execute('cp', '-fpRv whats-in-the-box-master/ ./', function() {
+        execute('cp', '-fpRv whats-in-the-box-master/app/config ./app');
+        execute('cp', '-fpRv whats-in-the-box-master/app/helpers ./app');
+        execute('cp', '-fpRv whats-in-the-box-master/app/assets/fonts ./app/assets');
+        execute('cp', '-fpRv whats-in-the-box-master/test ./');
+        execute('cp', '-fpRv whats-in-the-box-master/brunch-config.js ./brunch-config.js');
+        execute('cp', '-fpRv whats-in-the-box-master/setup.js ./setup.js');
+        execute('cp', '-fpRv whats-in-the-box-master/generators ./', function() {
           execute('rm', '-rf whats-in-the-box-master');
           execute('npm install', function() {
             execute('bower install');
