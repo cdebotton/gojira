@@ -10,8 +10,12 @@ switch(mode) {
   case 'update':
     execute('curl https://codeload.github.com/cdebotton/whats-in-the-box/zip/master', '> master.zip', function() {
       execute('unzip', 'master.zip', function() {
-        execute('mv whats-in-the-box-master/*', '.', function() {
-          execute('rm', 'master.zip')
+        execute('rm', 'master.zip');
+        execute('mv -f whats-in-the-box-master/*', './', function() {
+          execute('rm -rf whats-in-the-box-master');
+          execute('npm install', function() {
+            execute('bower install');
+          });
         });
       });
     });
