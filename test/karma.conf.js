@@ -19,7 +19,7 @@ module.exports = function(config) {
     runnerPort: 9100,
     colors: true,
     logLevel: config.LOG_INFO,
-    reporters: ['dots'],
+    reporters: ['spec'],
 
     // Available browsers
     // Chrome
@@ -45,7 +45,8 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-chrome-launcher',
       'karma-firefox-launcher',
-      'karma-safari-launcher'
+      'karma-safari-launcher',
+      'karma-spec-reporter'
     ]
   })
 };
