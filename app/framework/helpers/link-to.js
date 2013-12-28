@@ -60,6 +60,12 @@ module.exports = Handlebars.registerHelper('link-to', function(target, options) 
 
     a.innerText = options.fn();
     this._parentView._toRender.push([aId, a]);
+
+    App.Router.on('route', _.bind(function($a, target, route) {
+      var $a = $(a);
+      $a[route === target ? 'addClass' : 'removeClass']('active');
+    }, this, a, target));
+
     return '<a id="_' + aId + '">waiting</a>';
   }
 
