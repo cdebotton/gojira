@@ -1,6 +1,7 @@
 module.exports = App.ApplicationRouter = Backbone.Router.extend({
   routes: {
-    '': 'index'
+    '': 'index',
+    'about': 'about'
   },
 
   constructor: function(options) {

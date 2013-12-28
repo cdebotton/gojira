@@ -95,4 +95,12 @@ describe('helpers/link-to', function() {
     expect(this.view.render().$('a').eq(1).attr('href')).to.equal('/users/1');
     expect(this.view.render().$('a').eq(2).attr('href')).to.equal('/users/1/profile/2');
   });
+
+  it('should take remaining hash elements and pass them as attributes', function() {
+    App.Router = new App.ApplicationRouter;
+    this.view.template = Handlebars.compile('{{#link-to \'index\' class=\'foo\' id=\'bar\'}}Foo{{/link-to}}');
+    this.view.render();
+    expect(this.view.$('a').hasClass('foo')).to.be.true;
+    expect(this.view.$('a')[0].id).to.equal('bar');
+  });
 });

@@ -37,7 +37,7 @@ var ViewHelper = {
   renderPostponed: function(parentView) {
     var cid = parentView.cid;
     this.rendered[cid] = _.map(this.postponed[parentView.cid], function(view) {
-      view.render();
+      view.render.call(view);
       parentView.$('#_' + view.cid).replaceWith(view.el);
       view.didInsertElement();
       return view;
@@ -92,6 +92,10 @@ module.exports = App.View = Backbone.View.extend({
         view: this
       });
     }
+    if (typeof this.role === 'string') {
+      this.$el.attr('role', this.role);
+    }
+    this._toRender = [];
   }
 });
 
@@ -121,6 +125,11 @@ App.View.prototype.render = function() {
     var data = typeof this.templateData === 'function' ? this.templateData() : this.templateData;
     this.renderTemplate(data);
   }
+  _.each(this._toRender, _.bind(function(item, key) {
+    this.$('#_' + item[0]).replaceWith(item[1]);
+  }, this));
+  this._toRender = [];
+
   return this;
 };
 

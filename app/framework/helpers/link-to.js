@@ -5,11 +5,13 @@ module.exports = Handlebars.registerHelper('link-to', function(target, options) 
       keys = _.keys(App.Router.routes),
       hash = Backbone.history._hasPushState ||
              !Backbone.history._wantsHashChange ?
-             '' : '#/',
+             '/' : '/#/',
       index, model;
+  options.hash = options.hash || {};
 
-  if (options.hash && options.hash.model) {
+  if (options.hash.model) {
     model = this._parentView.model.get(options.hash.model);
+    delete options.hash.model;
   }
   else {
     model = this._parentView.model;
@@ -41,7 +43,24 @@ module.exports = Handlebars.registerHelper('link-to', function(target, options) 
     }, this), []);
 
 
-    return '<a href="/' + hash + route +'">' + options.fn() + '</a>';
+    var attrs = [];
+    var aId = _.uniqueId('a'),
+        a = document.createElement('a');
+
+    for (var i in options.hash) {
+      a[i] = options.hash[i];
+    }
+
+    a.href = hash + route;
+
+    a.addEventListener('click', _.bind(function(route, e) {
+      Backbone.history.navigate(route, true);
+      e.preventDefault();
+    }, null, route));
+
+    a.innerText = options.fn();
+    this._parentView._toRender.push([aId, a]);
+    return '<a id="_' + aId + '">waiting</a>';
   }
 
   throw new Error('route: ' + target + ' does not exist.');

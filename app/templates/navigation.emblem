@@ -1,0 +1,4 @@
+link-to 'index' className='navbar-brand' | ゴジラ
+ul.nav.navbar-nav
+  li: link-to 'index' | Home
+  li: link-to 'about' | About
