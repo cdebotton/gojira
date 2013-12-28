@@ -1,4 +1,4 @@
-# What's in the box?!
+# ゴジラ
 
 ## About
 Written by [Christian de Botton](mailto:debotton@brooklynunited.com). The framework uses Backbone, Backbone-Relational, Backbone-Validation, jQuery, underscore, modernizr, Handlebars, Stylus, Nib, and Emblem. The testing suites use Karma, Mocha, Chai, and Sinon. The framework also provides scaffolding for rapid development.
