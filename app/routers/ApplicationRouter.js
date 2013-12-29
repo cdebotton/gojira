@@ -2,8 +2,7 @@ module.exports = App.ApplicationRouter = Backbone.Router.extend({
   routes: {
     ''                      : 'index',
     'about'                 : 'about',
-    'todo/:todo_id'        : 'todo.edit',
-    'todo/:todo_id/delete' : 'todo.delete'
+    'todo/:todo_id'        : 'todo.edit'
   },
 
   constructor: function(options) {

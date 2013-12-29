@@ -24,11 +24,9 @@ App.Router = new App.ApplicationRouter;
 App.instance = new App.ApplicationView({
   model: new App.ApplicationModel({
     todos: [{
-      id: 1,
       task: 'sample todo',
       complete: true
     }, {
-      id: 2,
       task: 'you can get rid of this',
       complete: false
     }]

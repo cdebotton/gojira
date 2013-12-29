@@ -14,5 +14,7 @@ module.exports = App.CompleteTodosView = App.View.extend({
   initialize: function() {
     Backbone.Validation.bind(this);
     this.listenTo(this.model.get('todos'), 'change', this.render);
+    this.listenTo(this.model.get('todos'), 'destroy', this.render);
+    this.listenTo(this.model.get('todos'), 'add', this.render);
   }
 });
