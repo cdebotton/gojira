@@ -1,5 +1,18 @@
 'use strict';
 
+function transformProp(prop) {
+  return (function() {
+    switch(prop) {
+      case 'class':
+      case 'classNames':
+      case 'classes':
+        return 'className';
+      default:
+        return prop;
+    }
+  })();
+}
+
 module.exports = Handlebars.registerHelper('link-to', function(target, options) {
   var values = _.values(App.Router.routes),
       keys = _.keys(App.Router.routes),
@@ -48,9 +61,8 @@ module.exports = Handlebars.registerHelper('link-to', function(target, options) 
         a = document.createElement('a');
 
     for (var i in options.hash) {
-      a[i] = options.hash[i];
-    }
-
+      a[transformProp(i)] = options.hash[i];
+    };
     a.href = hash + route;
 
     a.addEventListener('click', _.bind(function(route, e) {

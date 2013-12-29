@@ -72,6 +72,6 @@ describe('bind helper', function() {
     this.view.render();
     expect(this.view.$('i').hasClass('foo')).to.be.true;
     this.view.model.set('foo', false);
-    expect(this.view.$('i').attr('class')).to.be.false;
+    expect(this.view.$('i').attr('class')).to.equal('');
   });
 });

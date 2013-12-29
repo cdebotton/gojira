@@ -57,8 +57,8 @@ describe('helpers/link-to', function() {
 
   it('Should throw an error if an undefined URL is passed.', function() {
     App.Router = new App.ApplicationRouter;
-    this.view.template = Handlebars.compile('{{#link-to \'about\'}}About{{/link-to}}');
-    expect(this.view.render.bind(this.view)).to.throw('route: about does not exist.');
+    this.view.template = Handlebars.compile('{{#link-to \'baz\'}}About{{/link-to}}');
+    expect(this.view.render.bind(this.view)).to.throw('route: baz does not exist.');
   });
 
   it('Should resolve static routes.', function() {
