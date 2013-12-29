@@ -11,6 +11,14 @@ module.exports = App.ApplicationModel = App.Model.extend({
     todos: []
   },
 
+  mutators: {
+    completed: function() {
+      return this.get('todos').filter(function(model) {
+        return model.get('complete');
+      }).length;
+    }
+  },
+
   validations: {
     title: { required: true }
   },

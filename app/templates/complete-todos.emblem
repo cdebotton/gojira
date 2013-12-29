@@ -1,0 +1,4 @@
+hr
+span.pull-right: small
+  strong completed:&nbsp;
+  completed

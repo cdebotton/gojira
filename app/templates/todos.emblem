@@ -14,3 +14,5 @@ views 'App.TodoEditView' 'todos'
     .col-md-9 #{task}
     .col-md-1: link-to 'todo.edit' className='label label-info' | edit
     .col-md-1: link-to 'todo.delete' className='label label-danger' | rm
+
+view 'App.CompleteTodosView'
