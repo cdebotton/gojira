@@ -13,7 +13,7 @@ module.exports = App.NavigationView = App.View.extend({
 
   },
 
-  initialize: function() {
+  initialize: function(options) {
     Backbone.Validation.bind(this);
   }
 });

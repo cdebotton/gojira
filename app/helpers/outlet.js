@@ -1,14 +1,14 @@
 'use strict';
 
 module.exports = Handlebars.registerHelper('outlet', function(options) {
-  var div = document.createElement('div'),
-      name;
+  var name, str;
 
   if (this._parentView) {
     name =  '_' + this._parentView.cid + '-outlet'
-    div.id = name;
     this._parentView.outlets['main'] = name;
   }
 
-  return new Handlebars.SafeString(div.outerHTML);
+  str = '<div data-outlet-id="' + name + '"></div>';
+
+  return new Handlebars.SafeString(str);
 });

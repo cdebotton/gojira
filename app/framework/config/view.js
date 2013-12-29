@@ -21,7 +21,9 @@ var ViewHelper = {
     else if(typeof options.hash.model === 'string') {
       options.hash.model = parentView.model.get(options.hash.model);
     }
-
+    _.extend(options.hash, {
+      parentView: parentView
+    });
     var view = new viewClass(options.hash);
     if (options.fn) {
       view.template = options.fn;
@@ -92,20 +94,54 @@ module.exports = App.View = Backbone.View.extend({
         view: this
       });
     }
+
+    if (options && options.parentView) {
+      this.parent = options.parentView;
+      delete options.parent;
+    }
+
     if (typeof this.role === 'string') {
       this.$el.attr('role', this.role);
     }
     this._toRender = [];
     this.outlets = {};
+    if (this.supports instanceof Object) {
+      this._childViews = _.map(_.pairs(this.supports), function(pair, key) {
+        var className = pair[1],
+            route = pair[0];
+        var viewClass = _.inject((className || '').split('.'), function(memo, fragment) {
+          return memo[fragment] || false;
+        }, window);
+        if (! viewClass) {
+          throw new Error('Supported child view ' + className + ' does not exist.');
+        }
+        viewClass.prototype.parent = this;
+        viewClass.prototype._outletRoot = '_' + this.cid;
+        viewClass.prototype.model = viewClass.prototype.model || this.model;
+        var view = new viewClass;
+        view.listenTo(App.Router, 'route', _.bind(function(target, route) {
+          if (target === route) this.render();
+          else this.$el.remove();
+        }, view, route));
+        return view;
+      }, this);
+    }
   }
 });
 
 App.View.prototype.renderTemplate = function(context) {
+  var outlet, html
   context = context || {};
   ViewHelper.clearRendered(this);
   context = _.clone(context);
   context._parentView = this;
-  this.$el.html(this.template(context, { data: { view: this } }));
+  outlet = this.getOutlet();
+  html = this.template(context, { data: { view: this } });
+  this.$el.html(html);
+  if (outlet) {
+    this.$el.attr('data-id-outlet', '_' + this.parent.cid + '-outlet');
+    this.parent.$(outlet).append(this.el);
+  }
   ViewHelper.renderPostponed(this);
   return this;
 };
@@ -143,6 +179,13 @@ App.View.prototype.templateData = function() {
     _.extend(ctx, { controller: this.controller.toJSON() });
   }
   return ctx;
+};
+
+App.View.prototype.getOutlet = function(str) {
+  var outlet = str || this.outlet || false;
+  if (!outlet) return false;
+
+  return '[data-outlet-id="_' + this.parent.cid + '-outlet"]';
 };
 
 App.View.prototype.didInsertElement = function() {};

@@ -1,0 +1,7 @@
+.container
+  h1
+    | gojira&nbsp;
+    small a brunch scaffold on steroids
+  hr
+
+  view 'App.TodosView'

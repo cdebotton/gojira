@@ -15,7 +15,7 @@ describe('outlet-helper', function() {
     var cid = this.view.cid;
     this.view.template = Handlebars.compile('{{outlet}}');
     this.view.render();
-    expect(this.view.el.innerHTML).to.equal('<div id="_' + cid +'-outlet"></div>');
+    expect(this.view.el.innerHTML).to.equal('<div data-outlet-id="_' + cid +'-outlet"></div>');
   });
 
   it('should add a main outlet to the parent view when the outlet is added.', function() {
