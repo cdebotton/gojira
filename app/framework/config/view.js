@@ -96,6 +96,7 @@ module.exports = App.View = Backbone.View.extend({
       this.$el.attr('role', this.role);
     }
     this._toRender = [];
+    this.outlets = {};
   }
 });
 
