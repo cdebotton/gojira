@@ -23,19 +23,24 @@ module.exports = Handlebars.registerHelper('link-to', function(target, options) 
   options.hash = options.hash || {};
 
   if (options.hash.model) {
-    model = this._parentView.model.get(options.hash.model);
+    if (typeof options.hash.model === 'string') {
+      model = this._parentView.model.get(options.hash.model);
+    }
+    else {
+      model = options.hash.model;
+    }
     delete options.hash.model;
   }
   else {
     model = this._parentView.model;
   }
-
   if ((index = _.indexOf(values, target)) > -1) {
     var route = keys[index];
     var objectPath = _.reduce(target.split('.'), _.bind(function(memo, part, key, array) {
       var reg = new RegExp(':' + part +'_([^\/]+)', 'i'),
           matches = route.match(reg),
           path, property, localPath, value;
+
       if (! matches) {
         return array[0];
       }
@@ -54,7 +59,6 @@ module.exports = Handlebars.registerHelper('link-to', function(target, options) 
       }
       return memo;
     }, this), []);
-
 
     var attrs = [];
     var aId = _.uniqueId('a'),

@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = App.TodosModel = App.Model.extend({
+module.exports = App.TodoModel = App.Model.extend({
   relations: [
 
   ],

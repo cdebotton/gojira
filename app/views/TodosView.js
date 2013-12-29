@@ -11,6 +11,10 @@ module.exports = App.TodosView = App.View.extend({
 
   },
 
+  supports: {
+    'todos.edit': 'App.TodoEditView'
+  },
+
   initialize: function() {
     Backbone.Validation.bind(this);
   }

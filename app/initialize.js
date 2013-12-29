@@ -21,10 +21,21 @@ folderOrder.forEach(function(folder) {
 
 App.Router = new App.ApplicationRouter;
 
-var app = new App.ApplicationView({
-  model: new App.ApplicationModel
+App.instance = new App.ApplicationView({
+  model: new App.ApplicationModel({
+    todos: [{
+      id: 1,
+      task: 'sample todo',
+      complete: true
+    }, {
+      id: 2,
+      task: 'you can get rid of this',
+      complete: false
+    }]
+  })
 });
-app.render();
+
+App.instance.render();
 
 Backbone.history.start({ pushState: true });
-module.exports = app;
+module.exports = App.instance;

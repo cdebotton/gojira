@@ -1,1 +1,16 @@
-p todos template
+h4 generic todo app demo!
+
+outlet
+
+.row
+  .col-md-1 complete
+  .col-md-5 task
+  .col-md-1 remove
+  .col-md-1 edit
+
+views 'App.TodoEditView' 'todos'
+  .row
+    .col-md-1: view 'App.FormInputView' tagName='input' type='checkbox' bind='complete'
+    .col-md-9 #{task}
+    .col-md-1: link-to 'todo.edit' className='label label-info' | edit
+    .col-md-1: link-to 'todo.delete' className='label label-danger' | rm
