@@ -4,7 +4,13 @@
  * Create empty validation function.
  * @type {Backbone.Model}
  */
-App.Model = Backbone.RelationalModel.extend({});
+App.Model = Backbone.RelationalModel.extend({
+  constructor: function(options) {
+    _.bindAll(this, 'markToRevert');
+    Backbone.RelationalModel.call(this, options);
+    this.markToRevert();
+  }
+});
 
 /**
  * Create reference shortcut to Object's hasOwnProperty.
@@ -103,6 +109,17 @@ var flatten = function (obj, into, prefix) {
 };
 
 _.extend(App.Model.prototype, {
+
+  markToRevert: function() {
+    this._revertAttributes = _.clone(this.attributes);
+  },
+
+  revert: function() {
+    if (this._revertAttributes) {
+      this.attributes = _.clone(this._revertAttributes);
+    }
+  },
+
   get: function(attr) {
     var seek = getNested(attr, this);
     if (seek.attr !== void 0) {
@@ -151,6 +168,7 @@ _.extend(App.Model.prototype, {
   sync: function(method, model, options) {
     var attrs = (options.attrs || flatten(model.toJSON()));
     this.set(attrs, {silent: true});
+    this.markToRevert();
     return Backbone.sync.call(this, method, model, options);
   }
 });
